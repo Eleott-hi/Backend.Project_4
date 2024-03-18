@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "0ee60bc4-a58f-4398-850a-f7005ef3e592",
+		"name": "Backend 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28377021"
+	},
+	"item": [
+		{
+			"name": "https://backend3.local/api/clients/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"client_name\": \"string\",\r\n  \"client_surname\": \"string\",\r\n  \"birthday\": \"2024-02-29\",\r\n  \"gender\": \"male\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://backend3.local/api/clients/",
+					"protocol": "https",
+					"host": [
+						"backend3",
+						"local"
+					],
+					"path": [
+						"api",
+						"clients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://backend3.local/api/clients/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://backend3.local/api/clients/",
+					"protocol": "https",
+					"host": [
+						"backend3",
+						"local"
+					],
+					"path": [
+						"api",
+						"clients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://backend3.local/api/v1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://backend3.local/api/v1",
+					"protocol": "https",
+					"host": [
+						"backend3",
+						"local"
+					],
+					"path": [
+						"api",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://backend3.local/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://backend3.local/",
+					"protocol": "https",
+					"host": [
+						"backend3",
+						"local"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://backend3.local/status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://backend3.local/status",
+					"protocol": "https",
+					"host": [
+						"backend3",
+						"local"
+					],
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://backend3.local/admin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://backend3.local/admin",
+					"protocol": "https",
+					"host": [
+						"backend3",
+						"local"
+					],
+					"path": [
+						"admin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

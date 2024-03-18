@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:16
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: adminpassword
+      PGADMIN_LISTEN_PORT: 5050
+    ports:
+      - 5050:5050
+    depends_on:
+      - db
+
+  fastapi_1:
+    build: ./app
+    restart: always
+    container_name: fastapi_1
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    command: bash -c "pip install -r requirements.txt; python3 main.py"
+    environment:
+      DB_USER: "postgres"
+      DB_PASSWORD: "postgres"
+    depends_on:
+      - db
+    # ports:
+    #   - 8000:8000
+
+  fastapi_2:
+    container_name: fastapi_2
+    extends:
+      service: fastapi_1
+    environment:
+      DB_USER: "readonly_user"
+      DB_PASSWORD: "1"
+    command: bash -c "sleep 5; pip install -r requirements.txt; python3 main.py"
+    depends_on:
+      - fastapi_1
+
+  fastapi_3:
+    container_name: fastapi_3
+    extends:
+      service: fastapi_2
+    ports:
+      - 8000:8000
+    depends_on:
+      - fastapi_2
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - 443:443
+    volumes:
+      - ./nginx/statics/:/var/www/
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl/:/etc/nginx/ssl
+    depends_on:
+      - pgadmin
+      - fastapi_1

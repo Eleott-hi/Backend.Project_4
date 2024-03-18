@@ -1,0 +1,9 @@
+fastapi[all]
+sqlmodel
+psycopg2
+# dotenv
+httpx
+pytest
+pydantic-extra-types
+phonenumbers
+opyoid
