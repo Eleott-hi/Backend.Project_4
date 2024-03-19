@@ -36,8 +36,8 @@ services:
     environment:
       DB_USER: "postgres"
       DB_PASSWORD: "postgres"
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     # ports:
     #   - 8000:8000
 
@@ -49,17 +49,17 @@ services:
       DB_USER: "readonly_user"
       DB_PASSWORD: "1"
     command: bash -c "sleep 5; pip install -r requirements.txt; python3 main.py"
-    depends_on:
-      - fastapi_1
+    # depends_on:
+    #   - fastapi_1
 
   fastapi_3:
     container_name: fastapi_3
     extends:
       service: fastapi_2
-    ports:
-      - 8000:8000
-    depends_on:
-      - fastapi_2
+    # ports:
+    #   - 8000:8000
+    # depends_on:
+    #   - fastapi_2
 
   nginx:
     image: nginx:latest
