@@ -1,0 +1,9 @@
+grpcio 
+grpcio-tools
+sqlmodel
+psycopg2
+pydantic-extra-types
+phonenumbers
+opyoid
+sqlalchemy
+sqlalchemy-utils

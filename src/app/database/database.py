@@ -9,7 +9,9 @@ engine = create_engine(DB_URL, echo=True)
 def init_db():
     global engine
 
+    print("Initialize database models")
     SQLModel.metadata.create_all(engine)
+    print("Finish Initializing database models")
 
 
 def get_session():
