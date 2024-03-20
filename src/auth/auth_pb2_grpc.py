@@ -19,6 +19,11 @@ class AuthenticationStub(object):
                 request_serializer=auth__pb2.LoginRequest.SerializeToString,
                 response_deserializer=auth__pb2.LoginResponse.FromString,
                 )
+        self.VerifyJWT = channel.unary_unary(
+                '/Authentication/VerifyJWT',
+                request_serializer=auth__pb2.VerifyJWTRequest.SerializeToString,
+                response_deserializer=auth__pb2.EmptyResponse.FromString,
+                )
         self.Registration = channel.unary_unary(
                 '/Authentication/Registration',
                 request_serializer=auth__pb2.RegistrationRequest.SerializeToString,
@@ -40,6 +45,12 @@ class AuthenticationServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def Login(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def VerifyJWT(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -70,6 +81,11 @@ def add_AuthenticationServicer_to_server(servicer, server):
                     servicer.Login,
                     request_deserializer=auth__pb2.LoginRequest.FromString,
                     response_serializer=auth__pb2.LoginResponse.SerializeToString,
+            ),
+            'VerifyJWT': grpc.unary_unary_rpc_method_handler(
+                    servicer.VerifyJWT,
+                    request_deserializer=auth__pb2.VerifyJWTRequest.FromString,
+                    response_serializer=auth__pb2.EmptyResponse.SerializeToString,
             ),
             'Registration': grpc.unary_unary_rpc_method_handler(
                     servicer.Registration,
@@ -110,6 +126,23 @@ class Authentication(object):
         return grpc.experimental.unary_unary(request, target, '/Authentication/Login',
             auth__pb2.LoginRequest.SerializeToString,
             auth__pb2.LoginResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def VerifyJWT(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Authentication/VerifyJWT',
+            auth__pb2.VerifyJWTRequest.SerializeToString,
+            auth__pb2.EmptyResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

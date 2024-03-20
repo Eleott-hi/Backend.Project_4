@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nauth.proto\"\x0f\n\rEmptyResponse\"/\n\x0cLoginRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x1e\n\rLoginResponse\x12\r\n\x05token\x18\x01 \x01(\t\"k\n\x13RegistrationRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07surname\x18\x03 \x01(\t\x12\x14\n\x0cphone_number\x18\x04 \x01(\t\x12\x10\n\x08password\x18\x05 \x01(\t\"%\n\x14RegistrationResponse\x12\r\n\x05token\x18\x01 \x01(\t\"&\n\x15\x46orgotPasswordRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\"R\n\x15\x43hangePasswordRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x14\n\x0cold_password\x18\x02 \x01(\t\x12\x14\n\x0cnew_password\x18\x03 \x01(\t2\xe9\x01\n\x0e\x41uthentication\x12&\n\x05Login\x12\r.LoginRequest\x1a\x0e.LoginResponse\x12;\n\x0cRegistration\x12\x14.RegistrationRequest\x1a\x15.RegistrationResponse\x12\x38\n\x0e\x46orgotPassword\x12\x16.ForgotPasswordRequest\x1a\x0e.EmptyResponse\x12\x38\n\x0e\x43hangePassword\x12\x16.ChangePasswordRequest\x1a\x0e.EmptyResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nauth.proto\"\x0f\n\rEmptyResponse\"!\n\x10VerifyJWTRequest\x12\r\n\x05token\x18\x01 \x01(\t\"/\n\x0cLoginRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x1e\n\rLoginResponse\x12\r\n\x05token\x18\x01 \x01(\t\"k\n\x13RegistrationRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07surname\x18\x03 \x01(\t\x12\x14\n\x0cphone_number\x18\x04 \x01(\t\x12\x10\n\x08password\x18\x05 \x01(\t\"%\n\x14RegistrationResponse\x12\r\n\x05token\x18\x01 \x01(\t\"&\n\x15\x46orgotPasswordRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\"R\n\x15\x43hangePasswordRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x14\n\x0cold_password\x18\x02 \x01(\t\x12\x14\n\x0cnew_password\x18\x03 \x01(\t2\x99\x02\n\x0e\x41uthentication\x12&\n\x05Login\x12\r.LoginRequest\x1a\x0e.LoginResponse\x12.\n\tVerifyJWT\x12\x11.VerifyJWTRequest\x1a\x0e.EmptyResponse\x12;\n\x0cRegistration\x12\x14.RegistrationRequest\x1a\x15.RegistrationResponse\x12\x38\n\x0e\x46orgotPassword\x12\x16.ForgotPasswordRequest\x1a\x0e.EmptyResponse\x12\x38\n\x0e\x43hangePassword\x12\x16.ChangePasswordRequest\x1a\x0e.EmptyResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -23,18 +23,20 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   _globals['_EMPTYRESPONSE']._serialized_start=14
   _globals['_EMPTYRESPONSE']._serialized_end=29
-  _globals['_LOGINREQUEST']._serialized_start=31
-  _globals['_LOGINREQUEST']._serialized_end=78
-  _globals['_LOGINRESPONSE']._serialized_start=80
-  _globals['_LOGINRESPONSE']._serialized_end=110
-  _globals['_REGISTRATIONREQUEST']._serialized_start=112
-  _globals['_REGISTRATIONREQUEST']._serialized_end=219
-  _globals['_REGISTRATIONRESPONSE']._serialized_start=221
-  _globals['_REGISTRATIONRESPONSE']._serialized_end=258
-  _globals['_FORGOTPASSWORDREQUEST']._serialized_start=260
-  _globals['_FORGOTPASSWORDREQUEST']._serialized_end=298
-  _globals['_CHANGEPASSWORDREQUEST']._serialized_start=300
-  _globals['_CHANGEPASSWORDREQUEST']._serialized_end=382
-  _globals['_AUTHENTICATION']._serialized_start=385
-  _globals['_AUTHENTICATION']._serialized_end=618
+  _globals['_VERIFYJWTREQUEST']._serialized_start=31
+  _globals['_VERIFYJWTREQUEST']._serialized_end=64
+  _globals['_LOGINREQUEST']._serialized_start=66
+  _globals['_LOGINREQUEST']._serialized_end=113
+  _globals['_LOGINRESPONSE']._serialized_start=115
+  _globals['_LOGINRESPONSE']._serialized_end=145
+  _globals['_REGISTRATIONREQUEST']._serialized_start=147
+  _globals['_REGISTRATIONREQUEST']._serialized_end=254
+  _globals['_REGISTRATIONRESPONSE']._serialized_start=256
+  _globals['_REGISTRATIONRESPONSE']._serialized_end=293
+  _globals['_FORGOTPASSWORDREQUEST']._serialized_start=295
+  _globals['_FORGOTPASSWORDREQUEST']._serialized_end=333
+  _globals['_CHANGEPASSWORDREQUEST']._serialized_start=335
+  _globals['_CHANGEPASSWORDREQUEST']._serialized_end=417
+  _globals['_AUTHENTICATION']._serialized_start=420
+  _globals['_AUTHENTICATION']._serialized_end=701
 # @@protoc_insertion_point(module_scope)

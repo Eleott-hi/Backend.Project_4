@@ -21,17 +21,18 @@ def get_session():
         yield session
 
 def test_create():
-    with Session(engine) as session:
-        user = User(
-            name = "Nicola",
-            surname = "CSharp",
-            email = "nicola@gmail.com",
-            password_token = "token",
-            phone_number = "+79241325785"
-        )
+    pass
+    # with Session(engine) as session:
+    #     user = User(
+    #         name = "Nicola",
+    #         surname = "CSharp",
+    #         email = "nicola@gmail.com",
+    #         password_token = "token",
+    #         phone_number = "+79241325785"
+    #     )
         
-        session.add(user)
-        session.commit()
-        session.refresh(user)
+    #     session.add(user)
+    #     session.commit()
+    #     session.refresh(user)
         
-        return user.password_token
+    #     return user.password_token

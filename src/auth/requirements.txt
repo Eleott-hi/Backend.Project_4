@@ -1,9 +1,14 @@
 grpcio 
 grpcio-tools
+dotenv
 sqlmodel
 psycopg2
 pydantic-extra-types
+pydantic[email]
 phonenumbers
 opyoid
 sqlalchemy
 sqlalchemy-utils
+passlib
+pyjwt
+pytest

@@ -2,7 +2,7 @@ SERVER_DIR := fastapi
 DB_DIR := postgres
 DB_CONTAINER_NAME := db
 
-all: clean_db
+all: clean_db grpc
 	docker-compose up
 
 clean_db:
@@ -19,6 +19,17 @@ fastapi:
 	docker-compose restart fastapi_2
 	docker-compose restart fastapi_3
 
+grpc:
+	cd auth; make grpc
+
+test:
+	cd auth; make test
 
 key:
 	openssl req -x509 -newkey rsa:4096 -keyout backend3.local.key -out backend3.local.crt -days 365 -nodes -subj "/CN=backend3.local"
+
+prune:
+	docker system prune -a
+
+install:
+	cd auth; make install
