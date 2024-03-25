@@ -14,7 +14,16 @@ class AuthRouter():
         self.router = APIRouter(prefix="/auth", tags=["Authentication"])
 
         @self.router.post("/register")
-        async def register(request: RegistrationRequest) -> dict:
+        async def register(request: RegistrationRequest) -> JSONResponse:
+            """
+            Register new
+
+            Parameters:
+            - `request`: `RegistrationRequest` object containing client data.
+
+            Returns:
+            - `JSONResponse` object containing token.
+            """
             try:
 
                 d = request.__dict__
@@ -48,6 +57,15 @@ class AuthRouter():
 
         @self.router.post("/login")
         async def login(request: LoginRequest) -> dict:
+            """
+            Login
+
+            Parameters:
+            - `request`: `LoginRequest` object containing client data.
+
+            Returns:
+            - `JSONResponse` object containing token.
+            """
             try:
                 stub = self.__get_stub()
                 response: auth_pb2.RegistrationResponse = stub.Login(
@@ -78,6 +96,15 @@ class AuthRouter():
 
         @self.router.post("/forgot-password")
         async def forgot_password(request: ForgotPasswordRequest) -> dict:
+            """
+            Forgot password
+
+            Parameters:
+            - `request`: `ForgotPasswordRequest` object containing client data.
+
+            Returns:
+            - `JSONResponse` object containing token.
+            """
             try:
                 stub = self.__get_stub()
                 response: auth_pb2.RegistrationResponse = stub.ForgotPassword(
@@ -97,6 +124,15 @@ class AuthRouter():
 
         @self.router.post("/change-password", dependencies=[Depends(JWTBearer())])
         async def change_password(request: ChangePasswordRequest) -> dict:
+            """
+            Change password
+
+            Parameters:
+            - `request`: `ChangePasswordRequest` object containing client data.
+
+            Returns:
+            - `JSONResponse` object containing token.
+            """
             try:
                 stub = self.__get_stub()
                 stub.ChangePassword(
@@ -137,7 +173,6 @@ class AuthRouter():
                     status_code=status.HTTP_403_FORBIDDEN,
                     detail=e.details(),
                 )
-
             case grpc.StatusCode.NOT_FOUND:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
