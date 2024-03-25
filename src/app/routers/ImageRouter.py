@@ -1,11 +1,16 @@
-from fastapi import APIRouter, status, File, Form,  Response
+from fastapi import APIRouter, status, File, Form,  Response, Depends
+from auth.JWTBearer import JWTBearer
 from uuid import UUID
 from services.Interfaces.IImageService import IImageService
 
 
 class ImageRouter():
     def __init__(self, service: IImageService):
-        self.router = APIRouter(prefix="/images", tags=["Image"])
+        self.router = APIRouter(
+            prefix="/images",
+            tags=["Image"],
+            dependencies=[Depends(JWTBearer())]
+        )
         self.service = service
 
         @self.router.get("/{id}", responses={404: {"description": "Item not found"}})

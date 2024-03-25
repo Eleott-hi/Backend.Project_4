@@ -1,9 +1,12 @@
 fastapi[all]
 sqlmodel
 psycopg2
-# dotenv
+python-dotenv
 httpx
 pytest
 pydantic-extra-types
+pydantic[email]
 phonenumbers
 opyoid
+grpcio 
+grpcio-tools

@@ -1,4 +1,5 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, Depends
+from auth.JWTBearer import JWTBearer
 from typing import List
 from routers.schemas import ProductRequest, ProductResponse
 from uuid import UUID
@@ -8,7 +9,11 @@ from services.Interfaces.IProductService import IProductService
 class ProductRouter:
     def __init__(self, service: IProductService):
 
-        self.router = APIRouter(prefix="/products", tags=["Products"])
+        self.router = APIRouter(
+            prefix="/products",
+            tags=["Products"],
+            dependencies=[Depends(JWTBearer())]
+        )
         self.service = service
 
         @self.router.get("/", response_model=List[ProductResponse])

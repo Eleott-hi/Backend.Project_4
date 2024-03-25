@@ -1,4 +1,5 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, Depends
+from auth.JWTBearer import JWTBearer
 from typing import List
 from routers.schemas import SupplierRequest, SupplierResponse, AddressRequest
 from uuid import UUID
@@ -7,8 +8,11 @@ from services.Interfaces.ISupplierService import ISupplierService
 
 class SupplierRouter():
     def __init__(self, service: ISupplierService):
-
-        self.router = APIRouter(prefix="/suppliers", tags=["Suppliers"])
+        self.router = APIRouter(
+            prefix="/suppliers",
+            tags=["Suppliers"],
+            dependencies=[Depends(JWTBearer())]
+        )
         self.service = service
 
         @self.router.get("/", response_model=List[SupplierResponse])

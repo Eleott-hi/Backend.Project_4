@@ -1,14 +1,19 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, Depends, HTTPException
+from fastapi.security import HTTPBearer
 from typing import Optional, List
 from services.Interfaces.IClientService import IClientService
 import routers.schemas as schemas
 from uuid import UUID
-
+from auth.JWTBearer import JWTBearer
 
 
 class ClientRouter():
     def __init__(self, service: IClientService):
-        self.router = APIRouter(prefix="/clients", tags=["Clients"])
+        self.router = APIRouter(
+            prefix="/clients",
+            tags=["Clients"],
+            dependencies=[Depends(JWTBearer())]
+        )
         self.service = service
 
         @self.router.get("/", response_model=List[schemas.ClientResponse])

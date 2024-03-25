@@ -1,5 +1,6 @@
 import database.database as database
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
+from fastapi.responses import JSONResponse
 
 from DependencyInjection.InjectionModule import injector
 from routers.ClientRouter import ClientRouter
@@ -8,6 +9,9 @@ from routers.SupplierRouter import SupplierRouter
 from routers.ImageRouter import ImageRouter
 
 from contextlib import asynccontextmanager
+from routers.AuthRouter import AuthRouter
+from starlette.middleware.base import BaseHTTPMiddleware
+from auth.JWTBearer import middleware_get_token_from_cookies
 
 
 @asynccontextmanager
@@ -26,11 +30,16 @@ app = FastAPI(
     root_path="/api/v1",
 )
 
+app.add_middleware(
+    BaseHTTPMiddleware,
+    dispatch=middleware_get_token_from_cookies,
+)
 
 app.include_router(injector.inject(ClientRouter).router)
 app.include_router(injector.inject(ProductRouter).router)
 app.include_router(injector.inject(SupplierRouter).router)
 app.include_router(injector.inject(ImageRouter).router)
+app.include_router(AuthRouter().router)
 
 
 if __name__ == "__main__":
